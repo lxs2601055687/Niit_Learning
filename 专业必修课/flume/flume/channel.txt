@@ -1,0 +1,4 @@
+#channel
+.type=memory
+.capacity=    // channel能储存多少事件
+.transactionCapacity=    //channel和sink之间能发送多少事件

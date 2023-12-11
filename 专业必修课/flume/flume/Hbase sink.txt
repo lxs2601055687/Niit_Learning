@@ -1,0 +1,8 @@
+当我们使用Hbase作为接收者时，我们首先需要一个表来存储传输的数据
+
+Hbase的数据是存储在HDFS中的，所以我们要先启动hadoop
+
+#sink
+.type=hbase2    //我们可以使用hbase和hbase2两者中的一个
+.table=    //table name
+.columnFamily=    //columnFamily name

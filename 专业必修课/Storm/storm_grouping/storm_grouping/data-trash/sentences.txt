@@ -1,0 +1,4 @@
+word I kafka
+Storm is a perfect product
+Kafka is used to collect data from various system
+Storm is used as a consumer of Kafka and process the data in read time

@@ -1,0 +1,17 @@
+agentname.sources=sourcename
+agentname.channels=channelname1 channelname2
+agentname.sinks=sinkname1 sinkname2
+
+agentname.sources.sourcename.type=
+
+agentname.channels.channelname1.type=
+
+agentname.channels.channelname2.type=
+
+agentname.sinks.sinkname1.type=
+
+agentname.sinks.sinkname2.type=
+
+agentname.sources.sourcename.channels=channlname1 channelname2
+agentname.sinks.sinkname1.channel=channelname1
+agentname.sinks.sinkname2.channel=channelname2

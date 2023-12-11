@@ -1,0 +1,11 @@
+sudo systemctl status firewalld //查看防火墙状态
+
+sudo systemctl start firewalld //启动防火墙
+
+sudo systemctl stop firewalld //关闭防火墙
+
+sudo firewall-cmd --list-ports //查看可用端口
+
+sudo firewall-cmd --add-port=portnumber --permanent //添加可用端口 --permanent永久
+
+firewall-cmd --reload //重新加载

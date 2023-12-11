@@ -1,0 +1,23 @@
+spooldir是用来传输一整个目录的文件
+
+#define agentname,sourcename,channelname,sinkname
+agentname.sources=sourcename
+agentname.channels=channelname
+agentname.sinks=sinkname
+
+#define sources
+agentname.sources.sourcename.type=spooldir    //spooldir会自动追踪目标目录的变化情况并实时输出
+agentname.sources.sourcename.spoolDir=/root/bd3/3dir    //我们要传输的目录的路径
+
+#define channels
+agentname.channels.channelname.type=memory
+
+#define sinks
+agentname.sinks.sinkname.type=logger
+
+#connect sources with channnels and sinks with channel
+agentname.sources.sourcename.channels=channelname
+agentname.sources.sourcename.channels=channelname
+
+#start flume
+flume-ng agent -n agentname -f filename

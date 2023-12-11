@@ -1,0 +1,31 @@
+exec源 ：执行Linux命令，仅限于一个文件
+
+cat：用来显示现在的文件状态
+tail -F：当目标文件更新，终端也会输出新内容，仅限于一个文件
+
+echo "新内容" >>目标文件：Linux向文件中添加数据
+
+#定义agent,source,channel,sink
+agentname.sources=sourcename
+agentname.channels=channelname
+agentname.sinks=sinkname
+
+#定义来源
+agentname.sources.sourcename.type=exec
+agentname.sources.sourcename.command=cat /数据文件的位置
+
+#定义channel
+agentname.channnels.channelname.type=memory
+
+#定义sink
+agentname.sinks.sinkname.type=logger
+
+#连接
+agentname.sources.sourcename.channels=channelname
+agentname.sinks.sinkname.channel=channelname
+
+channel有两个类型：
+memory：将数据暂时存储在缓冲区，直到数据全部成功接收
+file：将数据存储在你的硬盘中
+
+当数据存储在txt文件中时，我们可以使用cat命令来读取txt文件的内容，然后source再读取cat得到的内容进行传输

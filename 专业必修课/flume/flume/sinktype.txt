@@ -1,0 +1,9 @@
+sink.type
+logger：终端为我们自己的机器
+transfer：终端为HDFS
+
+#define sinks
+agentname.sinks,sinkname.type=hdfs
+agentname.sinks.sinkname.hdfs.path=    //HDFS中文件存储位置
+agentname.sinks.sinkname.hdfs.fileType=DataStream   //实时传输
+agentname.sinks.sinkname.hdfs.hdfs.writeFormat=Text    //以txt形式记录

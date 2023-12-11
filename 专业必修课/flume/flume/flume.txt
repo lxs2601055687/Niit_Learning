@@ -1,0 +1,48 @@
+flume是用来将数据从各种不同的数据源传输到中心数据源
+
+flume可以在任何操作系统上运行，它并不需要依赖于hadoop
+
+flume event 是flume的最小单位
+
+flume总共由三部分组成：source,channel,sink
+
+source是连接到web server（也就是各种数据源）并接收数据
+
+channel会从source接收数据、储存数据（也就是它接收完source的数据再传输给sink后并不会删除数据，它会暂时把数据储存在自己的缓存区，直到sink成功地将数据传输给HDFS之后，channel才会将这些数据删除）、管理数据（假设web server每秒发送10个数据，而HDFS每秒只能接收8个数据，那么此时channel就会将剩下的2个数据储存在自己的缓存区，直到所有的数据都成功地被HDFS接收）并传输给sink
+
+sink则是接收channel的数据并上传到我们储存数据的系统
+
+既然HDFS有put命令，为什么还要flume呢？
+
+因为首先put一次只能传输一条数据；其次，假设我们有一台机器，这个机器每分钟产生一个数据，那么第一分钟它产生了一个数据，我们就要put一次，第二分钟又产生了一个数据，我们又要put一次，一个数据一个put，操作麻烦；而且假设一个web server一秒钟产生100个数据，而我们的HDFS每秒只能接收80个数据，那么每秒我们就会丢失20个数据
+
+而flume可以一次性发送大量数据（或者实时数据），并且还可以重复发送数据，也可以管理我们的数据流
+
+当两个及以上的flume-agent连接时，我们就需要AVRO来连接
+
+netcat是一个数据生成器（生成数据或者event）
+
+现阶段我们暂时不将数据储存到HDFS里，而是直接在终端显示数据
+
+flume-ng
+configuration file
+如何编写配置文件
+
+1.定义agent名称、定义source、定义channel、定义sink
+agentname.sources=sourcename
+agentname.channels=channelname
+agentname.sinks=sinkname
+2.定义source的属性：
+agentname.sources.sourcename.type=netcat //我们不能随意对source进行定义，一般source固定为netcat，只有当数据源是我们自己的数据源时才可以进行定义
+agentname.sources.sourcename.bind=localhost //ip地址，bind指监听发送到这个ip的全部信息，不是监听来自这个ip的信息
+agentname.sources.sourcename.port=portnumber(1-65000)
+3.定义channle的属性
+agentname.channels.channelname.type=memory
+4.定义的sink属性
+agentname.sinks.sinkname.type=logger
+5.在channel的帮助下将source和sink连接起来
+agentname.sources.sourcename.channels=channelname //一个source可以对应多个channel，所有这里是channels
+agentname.sinks.sinkname.channel=channelname //一个sink只能对应一个channel，所以这里是channel
+
+启动flume：
+flume-ng agent -n agentname -f filename

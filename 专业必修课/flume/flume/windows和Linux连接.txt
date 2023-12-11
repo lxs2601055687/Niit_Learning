@@ -1,0 +1,9 @@
+首先在Linux中编辑好配置文件（详细配置请查询flume.txt文件）
+
+注意，在配置ip时应使用虚拟机ip
+
+完成配置后回到windows
+
+W+R，输入cmd，在cmd中输入ncat 虚拟机ip 配置的端口号
+
+连接成功后即可在windows中向Linux发送消息

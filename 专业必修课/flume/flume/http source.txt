@@ -1,0 +1,17 @@
+HTTP source
+
+taildir是用来传输文件，当我们需要传输http请求时，就不能使用taildir，所以我们使用http source
+
+http source通过http post和get来接收flume事件
+
+http source转换flume事件中的flume请求
+
+我们需要能生成请求的软件：postman，在postman的帮助下，我们可以生成http请求
+
+#source
+.type=http
+.bind=Linux ip
+.port=
+
+#postman
+post:  http://LinuxIP:端口号

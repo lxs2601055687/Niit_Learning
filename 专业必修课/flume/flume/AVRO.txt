@@ -1,0 +1,15 @@
+当我们使用两个及以上的agnet时，我们就需要AVRO来进行连接
+
+假设我们有两台机器，一台是我们的电脑，一台是Linux，那我们就需要编写两个conf
+
+##windows
+#sink
+.type=avro
+.hostname=LinuxIP
+.port=
+
+##Linux
+#source
+.type=avro
+.bind=LinuxIP
+.port=    //和上面的windows conf同样的端口号

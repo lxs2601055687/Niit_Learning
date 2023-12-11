@@ -1,0 +1,57 @@
+1.Flume is a system to collecting, aggregating and moving large amounts of log data 
+from different source to centralized data store.
+Flume是一个从不同来源收集、聚合大量日志数据并将其移动到集中式数据存储的系统。
+
+2.Feature of Flume
+Scalable
+Reliable
+Fault tolerant
+
+3.A Flume event is defined as a unit of data flow 
+having a byte payload and an optional set of string attributes. 
+Flume事件被定义为具有字节有效负载和可选字符串属性集的数据流单元
+
+
+4.Flume agent is an independent JVM process (JVM) in Apache Flume.
+Flume代理是Apache Flume中的一个独立JVM进程（JVM）。
+Source
+Channel
+Sink
+
+5.netcat source
+A netcat-like source that listens on a given port and turns each line of text into an event. 
+一个类似netcat的源，它侦听给定的端口并将每一行文本转换为一个事件。
+ type :- netcat
+ bind:- ip address
+ Port :- 2222(1 to 65535)
+
+
+6.exec source
+Exec source runs a given Unix command on start-up and expects that process to continuously produce data. 
+Exec源在启动时运行给定的Unix命令，并期望该进程持续生成数据。
+ type :- exec
+ command:- cat and tail -F
+
+
+7. spooling source
+This source lets you ingest data by placing files to be ingested into a “spooling” directory on disk
+ This source will watch the specified directory for new files.
+ When transfer done it marked .COMPLETED in file.
+此源允许您通过将要摄取的文件放置到磁盘上的“假脱机”目录中来摄取数据
+此源将监视指定目录中的新文件。
+传输完成后，在文件中标记为.COMPLETED。
+ type :- spooldir
+ spoolDir:- path of directory
+
+8.Taildir source
+ Watch the specified files, and tail them in nearly real-time once detected new lines appended to the each files.
+ If the new lines are being written, this source will retry reading them in wait for the completion of the write.
+观察指定的文件，一旦检测到每个文件都附加了新行，就几乎实时地跟踪它们。
+如果正在写入新行，此源将重试读取，等待写入完成。
+
+ type :- TAILDIR
+ filegroups :- f1 f2
+ filegroups.f1 = file location
+Filegroups.f2 = file location
+
+

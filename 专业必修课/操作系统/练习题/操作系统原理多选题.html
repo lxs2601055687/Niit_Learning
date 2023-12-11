@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作系统原理多选题</title>
+    <style>
+        p,li {
+            font-family: "Microsoft YaHei";
+        }
+
+        .spoiler {
+            color: PaleGreen;
+            background-color: PaleGreen;
+            display:inline
+        }
+    </style>
+</head>
+
+
+<body style="background-color:LemonChiffon;">
+    <button onclick="spoiler_switch()">隐藏答案开关</button>
+    <div id="main-table" border="1"></div>
+</body>
+<script>
+    var spoiler_flag = true;
+    var questions = [
+        ['从下述关于模块化进程的叙述中，选出条正确的叙述<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">便于由多人分工编制大型程序</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">便于软件功能扩充</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">只要模块接口不变，各模块内部实现细节的修改，不会影响别的模块</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">使程序易于理解，也利于排错</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">模块间的单向调用关系，形成了模块的层次式结构</p>', '使程序设计更为方便，但比较难维护', '便于由多人分工编制大型程序', '便于软件功能扩充', '在内存能够容纳的前提下，应使模块尽可能大，以减少模块的个数', '模块之间的接口叫数据文件', '只要模块接口不变，各模块内部实现细节的修改，不会影响别的模块', '使程序易于理解，也利于排错', '模块间的单向调用关系，形成了模块的层次式结构', '模块愈小，模块化的优点愈明显，一般来说，一个模块的大小在10行以下', '一个模块实际上是一个进程'] ,
+        ['操作系统的主要功能是管理计算机系统中的资源，其中主要包括<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">存储器</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">处理机</p>，以及文件和设备。','存储器', '虚拟存储器', '运算器', '处理机', '控制器'] ,
+
+        ['从下面的叙述中选出条正确的叙述<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">信号量的初值不能为负数</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">线程是CPU调度的基本单位，但不是资源分配的基本单位</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">管程每次只允许一个进程进入</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">Wait、signal操作可以解决一切互斥问题</p>', '一个进程的状态发生变化总会引起其他一些进程的状态发生变化', '进程被挂起（suspend）后，状态变为阻塞状态', '信号量的初值不能为负数', '线程是CPU调度的基本单位，但不是资源分配的基本单位', '在进程对应的代码中使用wait、signal操作后，可以防止系统发生死锁', '管程每次只允许一个进程进入', 'Wait、signal操作可以解决一切互斥问题', '程序的顺序执行具有不可再现性'] ,
+        ['对生产者—消费者问题中，应设置互斥信号量mutex、资源信号量full和empty。它们的初始值应分别为<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">0</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">1</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">+n</p>0', '1', '-1', '-n', '+n'] ,
+        ['整型信号量整型信号量可用于实现进程的<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">同步</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">调度</p>是排它性访问临界资源。可用于实现进程的', '同步', '通信', '调度', '互斥'] ,
+        ['在将CPU的执行状态分为用户态和核心态的系统中，应该在核心态下执行的指令依次为<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">屏蔽所有中断</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">设置时钟</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">停机</p>', '屏蔽所有中断', '将数据压入堆栈', '设置时钟', '存取内存中某地址单元的值', '停机'] ,
+        ['下列信息中，不属于CPU现场信息的依次是<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">进程的就绪、阻塞、执行等基本状态</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">保存在堆栈中的函数参数、函数返回地址</p>', '指令计数器', '进程的就绪、阻塞、执行等基本状态', '堆栈的栈顶指针', '段表控制寄存器', '保存在堆栈中的函数参数、函数返回地址'] ,
+        ['进程的三个基本状态是<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">阻塞</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">就绪</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">执行</p>挂起', '阻塞', '就绪', '执行', '完成'] ,
+        ['从静态的角度看，进程是由<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">PCB</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">程序段</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">数据段</p>三部分组成的。', 'JCB', 'PCB', 'DCB', 'FCB', '程序段', '数据段', 'I/O缓冲区'] ,
+
+        ['产生死锁的四个必要条件是互斥条件、不剥夺条件和<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">请求和保持条件</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">环路条件</p>。', '请求和阻塞条件', '请求和释放条件', '请求和保持条件', '释放和阻塞条件', '释放和请求条件', '线性增长条件', '环路条件', '无序释放条件', '有序释放条件', '无序请求条件'] ,
+        ['产生死锁的基本原因是<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">资源分配不当</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">系统资源不足</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">进程调度不当</p>。', '资源分配不当', '系统资源不足', '作业调度不当', '资源的独占性', '进程推进顺序不当', '进程调度不当', '系统中进程太多', 'CPU运行太快'] ,
+        ['在多处理机系统中需要设置<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">进程调度</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">多处理机调度</p>,在分时系统中应该设置<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">作业调度</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">进程调度</p>,在批处理系统中应该设置<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">作业调度</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">进程调度</p>。', '剥夺调度', '作业调度', '进程调度', '中级调度', '多处理机调度'] ,
+
+        ['由分页系统发展为分段系统，进而又发展为段页式系统的主要动力是<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">更好地满足多道程序运行的需要</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">既满足用户要求，又提高内存利用率</p>。', '提高内存利用率', '提高系统吞吐量', '满足用户需要', '更好地满足多道程序运行的需要', '既满足用户要求，又提高内存利用率'] ,
+        ['动态链接是在<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">装入某段程序时</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">调用某段程序时</p>进行的。', '编译某段程序时', '装入某段程序时', '调用某段程序时', '紧凑时', '装入程序之前'] ,
+        ['从下列关于存储器功能的论述中，选出两条正确的论述。', '即使在多道程序设计的环境下，用户也能设计出用物理地址直接访问内存的程序', '内存分配最基本的任务是为每道程序分配内存空间，其所追求的主要目标是提高存储空间的利用率', '为了提高内存保护的灵活性，内存保护通常由软件实现', '交换技术已不是现代操作系统中常用的技术', '地址映射是指将程序空间中的逻辑地址变为内存空间的物理地址', '虚拟存储器是物理上扩充内存容量'] ,
+
+        ['测得某个请求调页的计算机系统部分状态数据为：CPU利用率20%，用于对换空间的硬盘的利用率97.7%，其他设备的利用率5%。由此断定系统出现异常。此种情况，<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">通过扩大硬盘容量，增加对换空间</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">减少运行进程数</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">加内存条，增加物理空间容量</p>能提高CPU的利用率。', '安装一个更快的硬盘', '通过扩大硬盘容量，增加对换空间', '增加运行进程数', '减少运行进程数', '加内存条，增加物理空间容量', '增加一个更快速的CPU', '增加其他更快的I/O设备', '使用访问速度更快的内存条'] ,
+        ['在请求调页系统中，已运行过的页是从<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">对换区</p>调入的。', '系统区', '文件区', '对换区', '页面缓冲池'] ,
+        ['在请求调页系统中，内存分配有<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">固定分配</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">可变分配</p>这两种策略。', '首次适应', '最佳适应', '固定分配', '可变分配'] ,
+        ['从下列关于虚拟存储器的论述中，选出两条正确的论述<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">在请求段页式系统中，以段为单位管理用户的虚空间，以页为单位管理内存空间</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">由于有了虚拟存储器，于是允许用户使用比内存更大的地址空间。</p>。', '在请求段页式系统中，以页为单位管理用户的虚空间，以段为单位管理内存空间', '在请求段页式系统中，以段为单位管理用户的虚空间，以页为单位管理内存空间', '为提高请求分页系统中内存的利用率，允许用户使用大小不同的页面', '在虚拟存储器中，为了能让更多的作业同时运行，通常只应装入10%～30%的作业后便启动运行', '实现虚拟存储器的最常用算法，是最佳适应算法OPT', '由于有了虚拟存储器，于是允许用户使用比内存更大的地址空间。'] ,
+        ['虚拟存储器管理系统的局部性有两种表现形式，它们的意义分别是<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">最近被访问的单元，很可能在不久的将来还要被访问。</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">最近被访问的单元，很可能它附近的单元也即将被访问。</p>。', '最近被访问的单元，很可能在不久的将来还要被访问。', '最近被访问的单元，很可能它附近的单元也即将被访问。', '结构化程序设计，很少出现转移语句', '程序化过程中循环语句的执行时间一般很长', '程序中使用的数据局部局部于各子进程'] ,
+
+        ['从下列有关SPOOLing系统的论述中，选择两条正确的论述<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">SPOOLing系统实现了对I/O设备的虚拟，只要输入设备空闲，SPOOLing可预先将输入数据从设备传送到输入井中供用户程序随时读取</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">在SPOOLing系统中，用户程序可随时将输出数据送到输出井中，待输出设备空闲时再执行数据输出操作</p>。', '构成SPOOLing系统的基本条件，是具有外围输入机和外围输出机。', '构成SPOOLing系统的基本条件，是只要具有大容量、高速硬盘作为输入井与输出井', '构成SPOOLing系统的基本条件，是只要操作系统中采用多道程序技术', 'SPOOLing系统是建立在分时系统中', 'SPOOLing系统是虚拟存储技术的体现', 'SPOOLing系统是在用户程序要读取数据时启动输入进程输入数据', '当输出设备忙时，SPOOLing系统中的用户程序暂停执行，待I/O空闲时再被唤醒，去执行操作', 'SPOOLing系统实现了对I/O设备的虚拟，只要输入设备空闲，SPOOLing可预先将输入数据从设备传送到输入井中供用户程序随时读取', '在SPOOLing系统中，用户程序可随时将输出数据送到输出井中，待输出设备空闲时再执行数据输出操作'] ,
+
+        ['按逻辑结构可把文件分为哪两类？<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">纪录式文件</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">流式文件</p>读、写文件', '只读文件', '索引文件', '链式文件', '纪录式文件', '流式文件'] ,
+
+        ['从下面关于索引文件的论述中，选出2条正确的论述。<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">在索引文件中，索引表的每个表项中含有相应记录的关键字和该记录的物理地址</p>、<p class="spoiler" onmouseover = "this.style.color=\'red\';this.style.backgroundColor=\'LemonChiffon\'" onmouseout = "this.style.color=\'PaleGreen\';this.style.backgroundColor=\'PaleGreen\'">对顺序文件进行检索时，首先从FCB中读出文件的第一个盘块号，而对索引文件进行检索时，应先从FCB中读出文件索引表的始址</p>', '在索引文件中，索引表的每个表项中含有相应记录的关键字和该记录的物理地址', '对顺序文件进行检索时，首先从FCB中读出文件的第一个盘块号，而对索引文件进行检索时，应先从FCB中读出文件索引表的始址', '对一个具有三级索引表引表的文件，存取一个记录通常需要三次访问磁盘', '在文件较大时，无论进行顺序存取还是随机存取，通常都以索引文件方式为最快']
+    ];
+    questions.forEach(element => {
+        var stem_p = document.createElement("p");
+        stem_p.innerHTML = element[0];
+        document.getElementById("main-table").appendChild(stem_p);
+        var option_ul = document.createElement("ul");
+        for (var i = 1;i < element.length;i++){
+            var option_li = document.createElement("li");
+            option_li.innerText = element[i];
+            option_ul.appendChild(option_li);
+        }
+        document.getElementById("main-table").appendChild(option_ul);
+    });
+    function spoiler_switch() {
+        var answers = document.getElementsByClassName("spoiler");
+        if (spoiler_flag) {
+            for (var i = 0;i < answers.length;i++){
+                answers[i].style.color = "red";
+                answers[i].style.backgroundColor = "LemonChiffon";
+            }
+            spoiler_flag = false;
+            console.log("隐藏答案已关闭");
+        } else {
+            for (var i = 0;i < answers.length;i++){
+                answers[i].style.color = "PaleGreen";
+                answers[i].style.backgroundColor = "PaleGreen";
+                // answer.onmouseover = function(){
+                //     answer.style.color = "red";
+                //     answer.style.backgroundColor = "LemonChiffon";
+                //     console.log(answer.style.backgroundColor);
+                // }
+                // answer.onmouseover = "this.style.color='red';this.style.backgroundColor='LemonChiffon'";
+                // answers[i].onmouseout = "this.style.color='PaleGreen';this.style.backgroundColor='PaleGreen'";
+            }
+            spoiler_flag = true;
+            console.log("隐藏答案已开启");
+        }
+    }
+</script>
+</html>

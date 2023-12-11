@@ -1,0 +1,16 @@
+taildir和spoodir    //使用taildir时必须全部大写表示
+
+spoodir有一些限制，比如当文件传输完成后，文件后缀会变成.completed，此时当你再向这个文件中写入新数据时，flume并不会将这些新数据传输
+
+spoodir：我们可以多个文件，只要文件在我们要进行传输的路径中，flume就会全部进行传输
+
+taildir：我们可以针对特定的文件，而且它不会传输重复的内容，而且当心内容被增加到我们传输的文件中时，它也会同步更新
+
+agentname.sources.sourcename.type=TAILDIR
+agentname.sources.sourcename.filegroups=f1     //你想要传输多少个文件，想要一个就f1，想要两个就f2
+agentname.sources.sourcename.filegroups.f1=    //文件路径
+.positionFile=    //因为taildir会把传输的文件位置储存在一个json 文件中，这就是规定这个 json文件的位置
+
+当你再次使用taildir传输文件时，你需要将原来运行产生的json文件删除，因为json文件存储了之前已经传输好了的文件的位置，它不会对这个文件再次进行传输
+
+如果你要传输多个名字近似的文件，比如log1.txt，log2.txt，你可以后面写*.log.*,或者说你没有这个文件，你在echo的时候添加了新文件，你也可以用这个，但是新文件必须也得是差不多这个样子
